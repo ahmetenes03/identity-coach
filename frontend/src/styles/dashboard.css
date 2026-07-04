@@ -1,0 +1,160 @@
+.dashboard-page {
+  min-height: 100vh;
+  display: flex;
+  background: #eef2ff;
+}
+
+.sidebar {
+  width: 260px;
+  background: #ffffff;
+  padding: 30px 24px;
+  border-right: 1px solid #e5e7eb;
+}
+
+.sidebar h2 {
+  color: #4f46e5;
+  margin-bottom: 32px;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sidebar nav a {
+  text-decoration: none;
+  color: #374151;
+  font-weight: 600;
+  padding: 12px;
+  border-radius: 10px;
+}
+
+.sidebar nav a:hover {
+  background: #eef2ff;
+  color: #4f46e5;
+}
+
+.dashboard-main {
+  flex: 1;
+  padding: 36px;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.dashboard-header h1 {
+  color: #111827;
+  margin-bottom: 6px;
+}
+
+.dashboard-header p {
+  color: #6b7280;
+}
+
+.add-habit-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #4f46e5;
+  color: white;
+  text-decoration: none;
+  padding: 13px 18px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.add-habit-button:hover {
+  background: #4338ca;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-bottom: 36px;
+}
+
+.stat-card {
+  background: white;
+  padding: 28px;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+.stat-card svg {
+  color: #4f46e5;
+  font-size: 26px;
+  margin-bottom: 14px;
+}
+
+.stat-card h3 {
+  font-size: 30px;
+  color: #111827;
+}
+
+.stat-card p {
+  color: #6b7280;
+  margin-top: 6px;
+}
+
+.habit-section {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+.section-header h2 {
+  color: #111827;
+}
+
+.section-header p {
+  color: #6b7280;
+  margin-top: 6px;
+}
+
+.empty-state {
+  margin-top: 34px;
+  text-align: center;
+  padding: 42px;
+  border: 2px dashed #c7d2fe;
+  border-radius: 18px;
+  background: #f8faff;
+}
+
+.empty-state svg {
+  font-size: 38px;
+  color: #4f46e5;
+  margin-bottom: 18px;
+}
+
+.empty-state h3 {
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  color: #6b7280;
+  max-width: 480px;
+  margin: 0 auto 22px;
+  line-height: 1.5;
+}
+
+.empty-button {
+  display: inline-block;
+  background: #4f46e5;
+  color: white;
+  text-decoration: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.empty-button:hover {
+  background: #4338ca;
+}
