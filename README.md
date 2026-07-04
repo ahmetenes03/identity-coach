@@ -122,10 +122,9 @@ Sprint 1 kapsamında geliştirilen kullanıcı hikâyeleri Jira üzerinden yöne
 
 Sprint boyunca ekip içi iletişim düzenli Daily Scrum toplantıları ile sürdürülmüş, görevlerin ilerleme durumu değerlendirilmiş ve karşılaşılan engeller ekip içerisinde çözülmüştür.
 
-📷 **Daily Scrum toplantılarına ait ekran görüntüleri aşağıda yer almaktadır.**
-<p align="center">
-  <img src="docs/sprint1/daily-scrum/daily-scrum-01.png" width="800">
-</p>
+🔗 **Daily Scrum Görselleri:**  
+https://github.com/ahmetenes03/identity-coach/tree/aybuke/docs/sprint1/daily-scrum
+
 ---
 
 ## Sprint Board Updates
