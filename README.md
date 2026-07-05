@@ -86,9 +86,13 @@ Yapay zekâ destekli analiz mekanizması, kullanıcının başarısızlık neden
 
 # 📋 Product Backlog
 
-Product Backlog, ürünün geliştirme sürecinde gerçekleştirilecek tüm kullanıcı hikâyelerini, önceliklendirilmiş görevleri ve sprint planlamalarını içerecek şekilde hazırlanmıştır. Backlog, kullanıcıya değer katacak temel özellikler önceliklendirilerek üç sprint boyunca geliştirilecek şekilde planlanmıştır.Sprint 1 kapsamında geliştirilen kullanıcı hikâyeleri Jira üzerinden yönetilmiş ve sprint süreci boyunca takip edilmiştir. Her kullanıcı hikâyesi, ekip üyeleri arasında paylaştırılan alt görevlere (subtask) ayrılarak geliştirilmiştir.
+Product Backlog, ürünün geliştirme sürecinde gerçekleştirilecek tüm kullanıcı hikâyelerini, önceliklendirilmiş görevleri ve sprint planlamalarını içerecek şekilde hazırlanmıştır. Backlog, kullanıcıya değer katacak temel özellikler önceliklendirilerek üç sprint boyunca geliştirilecek şekilde planlanmıştır.Sprint 1 kapsamında geliştirilen kullanıcı hikâyeleri Jira üzerinden yönetilmiş ve sprint süreci boyunca takip edilmiştir. Her kullanıcı hikâyesi, ekip üyeleri arasında paylaştırılan alt görevlere (subtask) ayrılarak geliştirilmiştir. Ürüne ait kullanıcı hikâyeleri, kabul kriterleri, önceliklendirme ve sprint planlamasını içeren Product Backlog aşağıdaki bağlantılarda yer almaktadır.
 
-🔗 **Product Backlog** *(Link eklenecek.)*
+[🔗 **Jira Product Backlog**](https://aybukeyildiz.atlassian.net/jira/software/projects/G9/boards/34/backlog?atlOrigin=eyJpIjoiYjg1Y2U1Y2ZlMWE2NGM2OTk0ZTcxMDAyYWU3OTc1NDUiLCJwIjoiaiJ9)
+
+
+[📄 **Product Backlog (PDF):**](docs/sprint1/product-backlog/Identity-Coach-Product-Backlog.pdf)
+
 
 ---
 
@@ -175,6 +179,8 @@ Sprint sonunda uygulamanın temel kullanıcı akışı tamamlanmış ve aşağı
 |--------------------|-----------------|
 | <img src="docs/sprint1/product/product-04.png" width="420"> | <img src="docs/sprint1/product/product-05.png" width="420"> |
 
+| Dashboard |
+|-----------|
 <p align="center">
   <img src="docs/sprint1/product/product-03.png" width="900">
 </p>
