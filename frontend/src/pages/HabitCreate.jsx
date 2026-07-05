@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FaBrain } from "react-icons/fa";
 import Button from "../components/Button";
 import Input from "../components/Input";
+import { createHabit } from "../services/habitService";
 import "../styles/habit.css";
 
 function HabitCreate() {
@@ -17,45 +18,36 @@ function HabitCreate() {
   });
 
   const [errors, setErrors] = useState({});
+  const [apiError, setApiError] = useState("");
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-
-    setErrors({
-      ...errors,
-      [e.target.name]: "",
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setErrors({ ...errors, [e.target.name]: "" });
+    setApiError("");
   };
 
   const validateForm = () => {
     const newErrors = {};
 
-    if (!formData.identity_text.trim()) {
-      newErrors.identity_text = "Kimlik cümlesi boş bırakılamaz.";
-    }
-
-    if (!formData.title.trim()) {
-      newErrors.title = "Alışkanlık adı boş bırakılamaz.";
-    }
-
-    if (!formData.goal_text.trim()) {
-      newErrors.goal_text = "Hedef açıklaması boş bırakılamaz.";
-    }
+    if (!formData.identity_text.trim()) newErrors.identity_text = "Kimlik cümlesi boş bırakılamaz.";
+    if (!formData.title.trim()) newErrors.title = "Alışkanlık adı boş bırakılamaz.";
+    if (!formData.goal_text.trim()) newErrors.goal_text = "Hedef açıklaması boş bırakılamaz.";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!validateForm()) return;
 
-    console.log("Alışkanlık verisi:", formData);
-    navigate("/dashboard");
+    try {
+      await createHabit(formData);
+      navigate("/dashboard");
+    } catch (error) {
+      setApiError(error.response?.data?.detail || "Alışkanlık oluşturulurken hata oluştu.");
+    }
   };
 
   return (
@@ -67,9 +59,10 @@ function HabitCreate() {
 
         <h1>Yeni Alışkanlık Oluştur</h1>
         <p className="habit-subtitle">
-          Önce kim olmak istediğini tanımla, sonra bu kimliği destekleyen
-          alışkanlığı oluştur.
+          Önce kim olmak istediğini tanımla, sonra bu kimliği destekleyen alışkanlığı oluştur.
         </p>
+
+        {apiError && <div className="error">{apiError}</div>}
 
         <form onSubmit={handleSubmit}>
           <Input
@@ -103,28 +96,16 @@ function HabitCreate() {
           />
 
           <div className="form-group">
-            <label>
-              Sıklık <span className="required">*</span>
-            </label>
-            <select
-              name="frequency"
-              value={formData.frequency}
-              onChange={handleChange}
-            >
+            <label>Sıklık <span className="required">*</span></label>
+            <select name="frequency" value={formData.frequency} onChange={handleChange}>
               <option value="daily">Günlük</option>
               <option value="weekly">Haftalık</option>
             </select>
           </div>
 
           <div className="form-group">
-            <label>
-              Tercih Edilen Zaman <span className="required">*</span>
-            </label>
-            <select
-              name="preferred_time"
-              value={formData.preferred_time}
-              onChange={handleChange}
-            >
+            <label>Tercih Edilen Zaman <span className="required">*</span></label>
+            <select name="preferred_time" value={formData.preferred_time} onChange={handleChange}>
               <option value="morning">🌞 Sabah</option>
               <option value="noon">☀️ Öğlen</option>
               <option value="evening">🌙 Akşam</option>
@@ -133,11 +114,6 @@ function HabitCreate() {
           </div>
 
           <Button type="submit">Alışkanlığı Kaydet</Button>
-
-          <p className="habit-info">
-            Identity Coach bu bilgileri kişiselleştirilmiş öneriler oluşturmak
-            için kullanacaktır.
-          </p>
         </form>
       </div>
     </div>
