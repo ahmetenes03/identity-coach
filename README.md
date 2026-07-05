@@ -8,6 +8,8 @@
 
 # 👥 Takım Rolleri
 
+| İsim | Rol |
+|------|------|
 | Ahmet Enes Selek| Product Owner |
 | Aybüke Yıldız   | Scrum Master |
 | Elif Ep         | Developer |
@@ -84,9 +86,9 @@ Yapay zekâ destekli analiz mekanizması, kullanıcının başarısızlık neden
 
 # 📋 Product Backlog
 
-Product Backlog, ürünün geliştirme sürecinde gerçekleştirilecek tüm kullanıcı hikâyelerini, önceliklendirilmiş görevleri ve sprint planlamalarını içerecek şekilde hazırlanmıştır. Backlog, kullanıcıya değer katacak temel özellikler önceliklendirilerek üç sprint boyunca geliştirilecek şekilde planlanmıştır.
+Product Backlog, ürünün geliştirme sürecinde gerçekleştirilecek tüm kullanıcı hikâyelerini, önceliklendirilmiş görevleri ve sprint planlamalarını içerecek şekilde hazırlanmıştır. Backlog, kullanıcıya değer katacak temel özellikler önceliklendirilerek üç sprint boyunca geliştirilecek şekilde planlanmıştır.Sprint 1 kapsamında geliştirilen kullanıcı hikâyeleri Jira üzerinden yönetilmiş ve sprint süreci boyunca takip edilmiştir. Her kullanıcı hikâyesi, ekip üyeleri arasında paylaştırılan alt görevlere (subtask) ayrılarak geliştirilmiştir.
 
-🔗 **Product Backlog:** *(Link eklenecek.)*
+🔗 **Product Backlog** *(Link eklenecek.)*
 
 ---
 
@@ -114,7 +116,7 @@ Sprint 1 backlog'u oluşturulurken uygulamanın çalışabilir ilk sürümünü 
 
 Sprint 1 kapsamında geliştirilen kullanıcı hikâyeleri Jira üzerinden yönetilmiş ve sprint süreci boyunca takip edilmiştir.
 
-🔗 **Jira Board:** (https://aybukeyildiz.atlassian.net/jira/software/projects/G9/boards/34?atlOrigin=eyJpIjoiMjgxMzU2NDYyMWMxNGU2MGFlZjY2NGJjOTU1MTE1ZGUiLCJwIjoiaiJ9)
+[🔗 **Jira Board**](https://aybukeyildiz.atlassian.net/jira/software/projects/G9/boards/34?atlOrigin=eyJpIjoiMjgxMzU2NDYyMWMxNGU2MGFlZjY2NGJjOTU1MTE1ZGUiLCJwIjoiaiJ9)
 
 ---
 
@@ -122,8 +124,7 @@ Sprint 1 kapsamında geliştirilen kullanıcı hikâyeleri Jira üzerinden yöne
 
 Sprint boyunca ekip içi iletişim düzenli Daily Scrum toplantıları ile sürdürülmüş, görevlerin ilerleme durumu değerlendirilmiş ve karşılaşılan engeller ekip içerisinde çözülmüştür.
 
-🔗 **Daily Scrum Görselleri:**  
-https://github.com/ahmetenes03/identity-coach/tree/aybuke/docs/sprint1/daily-scrum
+[🔗 **Daily Scrum Görselleri**](https://github.com/ahmetenes03/identity-coach/tree/aybuke/docs/sprint1/daily-scrum)
 
 ---
 
@@ -133,7 +134,24 @@ Sprint süresince görevlerin ilerleyişi Jira Board üzerinden takip edilmiş v
 
 📷 **Sprint Board ekran görüntüleri aşağıda yer almaktadır.**
 
+<p align="center">
+  <img src="docs/sprint1/sprint-board/sprint-board-01.png" width="900">
+</p>
+
+<p align="center">
+  <img src="docs/sprint1/sprint-board/sprint-board-02.png" width="900">
+</p>
+
+<p align="center">
+  <img src="docs/sprint1/sprint-board/sprint-board-03.png" width="900">
+</p>
+
+<p align="center">
+  <img src="docs/sprint1/sprint-board/sprint-board-04.png" width="900">
+</p>
+
 ---
+
 
 ## Ürün Durumu
 
@@ -148,6 +166,18 @@ Sprint sonunda uygulamanın temel kullanıcı akışı tamamlanmış ve aşağı
 
 📷 **Sprint sonunda geliştirilen ekranlara ait görseller aşağıda yer almaktadır.**
 
+
+| Kayıt Ol | Giriş Yap |
+|----------|-----------|
+| <img src="docs/sprint1/product/product-01.png" width="420"> | <img src="docs/sprint1/product/product-02.png" width="420"> |
+
+| Alışkanlık Oluştur | Günlük Check-in |
+|--------------------|-----------------|
+| <img src="docs/sprint1/product/product-04.png" width="420"> | <img src="docs/sprint1/product/product-05.png" width="420"> |
+
+<p align="center">
+  <img src="docs/sprint1/product/product-03.png" width="900">
+</p>
 ---
 
 ## Sprint Review

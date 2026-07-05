@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import AuthLayout from "../layouts/AuthLayout";
+import { registerUser } from "../services/authService";
 import "../styles/auth.css";
 
 function Register() {
@@ -15,6 +16,7 @@ function Register() {
   });
 
   const [errors, setErrors] = useState({});
+  const [apiError, setApiError] = useState("");
 
   const validateForm = () => {
     const newErrors = {};
@@ -49,19 +51,29 @@ function Register() {
       ...errors,
       [e.target.name]: "",
     });
+
+    setApiError("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!validateForm()) return;
 
-    console.log("Kayıt verisi:", formData);
-    navigate("/login");
+    try {
+      await registerUser(formData);
+      navigate("/dashboard");
+    } catch (error) {
+      setApiError(
+        error.response?.data?.detail || "Kayıt işlemi sırasında bir hata oluştu."
+      );
+    }
   };
 
   return (
     <AuthLayout title="Identity Coach" subtitle="Hesap Oluştur">
+      {apiError && <div className="error">{apiError}</div>}
+
       <form onSubmit={handleSubmit}>
         <Input
           label="Ad Soyad"

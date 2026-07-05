@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import AuthLayout from "../layouts/AuthLayout";
+import { loginUser } from "../services/authService";
 import "../styles/auth.css";
 
 function Login() {
@@ -14,6 +15,7 @@ function Login() {
   });
 
   const [errors, setErrors] = useState({});
+  const [apiError, setApiError] = useState("");
 
   const validateForm = () => {
     const newErrors = {};
@@ -42,19 +44,29 @@ function Login() {
       ...errors,
       [e.target.name]: "",
     });
+
+    setApiError("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!validateForm()) return;
 
-    console.log("Giriş verisi:", formData);
-    navigate("/dashboard");
+    try {
+      await loginUser(formData);
+      navigate("/dashboard");
+    } catch (error) {
+      setApiError(
+        error.response?.data?.detail || "Giriş işlemi sırasında bir hata oluştu."
+      );
+    }
   };
 
   return (
     <AuthLayout title="Identity Coach" subtitle="Giriş Yap">
+      {apiError && <div className="error">{apiError}</div>}
+
       <form onSubmit={handleSubmit}>
         <Input
           label="E-posta"
