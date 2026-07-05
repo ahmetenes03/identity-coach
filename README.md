@@ -91,7 +91,7 @@ Product Backlog, ürünün geliştirme sürecinde gerçekleştirilecek tüm kull
 [🔗 **Jira Product Backlog**](https://aybukeyildiz.atlassian.net/jira/software/projects/G9/boards/34/backlog?atlOrigin=eyJpIjoiYjg1Y2U1Y2ZlMWE2NGM2OTk0ZTcxMDAyYWU3OTc1NDUiLCJwIjoiaiJ9)
 
 
-[📄 **Product Backlog (PDF):**](docs/sprint1/product-backlog/Identity-Coach-Product-Backlog.pdf)
+[📄 **Product Backlog (PDF):**](docs/product-backlog/Identity-Coach-Product-Backlog.pdf)
 
 
 ---
