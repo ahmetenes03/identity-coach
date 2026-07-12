@@ -1,45 +1,80 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { FaPlus, FaCheckCircle, FaChartLine, FaBrain } from "react-icons/fa";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import {
+  FaPlus,
+  FaCheckCircle,
+  FaChartLine,
+  FaBrain,
+  FaSignOutAlt,
+  FaListUl,
+} from "react-icons/fa";
 import HabitCard from "../components/HabitCard";
+import WeeklyChart from "../components/WeeklyChart";
 import { deleteHabit, getCheckIns, getHabits } from "../services/habitService";
-import { logoutUser } from "../services/authService";
+import { getOverview, getWeekly } from "../services/statsService";
+import { getStoredName, logoutUser } from "../services/authService";
+import { getApiErrorMessage } from "../services/api";
+import { todayLocal } from "../utils/date";
 import "../styles/dashboard.css";
 
 function Dashboard() {
   const [habits, setHabits] = useState([]);
   const [checkIns, setCheckIns] = useState([]);
+  const [overview, setOverview] = useState(null);
+  const [weekly, setWeekly] = useState([]);
   const [loading, setLoading] = useState(true);
   const [apiError, setApiError] = useState("");
+  // Silme sonrası yeniden yükleme bu sayacı artırarak tetiklenir.
+  const [refreshKey, setRefreshKey] = useState(0);
   const navigate = useNavigate();
-
-  const fetchDashboardData = async () => {
-    try {
-      setLoading(true);
-      const habitsData = await getHabits();
-      const checkInsData = await getCheckIns();
-
-      setHabits(habitsData);
-      setCheckIns(checkInsData);
-    } catch (error) {
-      setApiError(
-        error.response?.data?.detail || "Veriler yüklenirken hata oluştu."
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
+  const userName = getStoredName();
 
   useEffect(() => {
-    fetchDashboardData();
-  }, []);
+    let ignore = false;
+
+    const load = async () => {
+      try {
+        const [habitsData, checkInsData, overviewData, weeklyData] =
+          await Promise.all([
+            getHabits(),
+            getCheckIns(),
+            getOverview(),
+            getWeekly(todayLocal()),
+          ]);
+        if (ignore) return;
+
+        setHabits(habitsData);
+        setCheckIns(checkInsData);
+        setOverview(overviewData);
+        setWeekly(weeklyData);
+        setApiError("");
+      } catch (error) {
+        if (!ignore) {
+          setApiError(
+            getApiErrorMessage(error, "Veriler yüklenirken hata oluştu.")
+          );
+        }
+      } finally {
+        if (!ignore) setLoading(false);
+      }
+    };
+
+    load();
+    return () => {
+      ignore = true;
+    };
+  }, [refreshKey]);
 
   const handleDeleteHabit = async (habitId) => {
     try {
       await deleteHabit(habitId);
-      fetchDashboardData();
+      toast.success("Alışkanlık silindi.");
+      setRefreshKey((key) => key + 1);
     } catch (error) {
-      alert(error.response?.data?.detail || "Silme işlemi sırasında hata oluştu.");
+      toast.error(
+        getApiErrorMessage(error, "Silme işlemi sırasında hata oluştu.")
+      );
     }
   };
 
@@ -48,35 +83,38 @@ function Dashboard() {
     navigate("/login");
   };
 
-  const getLatestCheckIn = (habitId) => {
-    const habitCheckIns = checkIns.filter(
-      (checkIn) => checkIn.habit_id === habitId
-    );
+  // API en yeni check-in'i ilk sırada döndürür (check_date desc).
+  const getLatestCheckIn = (habitId) =>
+    checkIns.find((checkIn) => checkIn.habit_id === habitId) || null;
 
-    if (habitCheckIns.length === 0) return null;
-
-    return habitCheckIns[habitCheckIns.length - 1];
-  };
+  const successRate = overview ? Math.round(overview.completion_rate * 100) : 0;
 
   return (
     <div className="dashboard-page">
       <aside className="dashboard-sidebar">
-        <h2>Identity Coach</h2>
+        <h2>
+          <FaBrain /> Identity Coach
+        </h2>
 
         <nav>
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/habit/create">Yeni Alışkanlık</Link>
-          <button className="logout-button" onClick={handleLogout}>
-            Çıkış Yap
-          </button>
+          <NavLink to="/dashboard">
+            <FaListUl /> Dashboard
+          </NavLink>
+          <NavLink to="/habit/create">
+            <FaPlus /> Yeni Alışkanlık
+          </NavLink>
         </nav>
+
+        <button className="logout-button" onClick={handleLogout}>
+          <FaSignOutAlt /> Çıkış Yap
+        </button>
       </aside>
 
       <main className="dashboard-main">
         <header className="dashboard-header">
           <div>
-            <h1>Hoş geldin 👋</h1>
-            <p>Bugünkü alışkanlıklarını takip etmeye başlayabilirsin.</p>
+            <h1>Hoş geldin{userName ? `, ${userName.split(" ")[0]}` : ""} 👋</h1>
+            <p>Bugün attığın her küçük adım, kimliğine verilmiş bir oy.</p>
           </div>
 
           <Link to="/habit/create" className="add-habit-button">
@@ -89,22 +127,35 @@ function Dashboard() {
 
         <section className="stats-grid">
           <div className="stat-card">
-            <FaCheckCircle />
-            <h3>{habits.length}</h3>
-            <p>Toplam Alışkanlık</p>
+            <div className="stat-icon brand">
+              <FaListUl />
+            </div>
+            <h3>
+              {overview ? overview.active_habit_count : "–"}
+              <span className="stat-sub">/ 3</span>
+            </h3>
+            <p>Aktif Alışkanlık</p>
           </div>
 
           <div className="stat-card">
-            <FaChartLine />
-            <h3>0%</h3>
+            <div className="stat-icon success">
+              <FaChartLine />
+            </div>
+            <h3>%{successRate}</h3>
             <p>Başarı Oranı</p>
           </div>
 
           <div className="stat-card">
-            <FaBrain />
-            <h3>AI</h3>
-            <p>Koçluk Hazır</p>
+            <div className="stat-icon violet">
+              <FaCheckCircle />
+            </div>
+            <h3>{overview ? overview.total_check_ins : "–"}</h3>
+            <p>Toplam Check-in</p>
           </div>
+        </section>
+
+        <section className="chart-card">
+          <WeeklyChart days={weekly} />
         </section>
 
         <section className="habit-section">
@@ -114,7 +165,7 @@ function Dashboard() {
           </div>
 
           {loading ? (
-            <p>Alışkanlıklar yükleniyor...</p>
+            <p className="loading-text">Alışkanlıklar yükleniyor...</p>
           ) : habits.length === 0 ? (
             <div className="empty-state">
               <FaBrain />

@@ -4,6 +4,7 @@ import { FaEdit } from "react-icons/fa";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import { getHabitById, updateHabit } from "../services/habitService";
+import { getApiErrorMessage } from "../services/api";
 import "../styles/habit.css";
 
 function HabitEdit() {
@@ -72,7 +73,7 @@ function HabitEdit() {
       await updateHabit(id, formData);
       navigate("/dashboard");
     } catch (error) {
-      setApiError(error.response?.data?.detail || "Alışkanlık güncellenirken hata oluştu.");
+      setApiError(getApiErrorMessage(error, "Alışkanlık güncellenirken hata oluştu."));
     }
   };
 

@@ -1,7 +1,7 @@
 from datetime import date, datetime
 from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 
 class CheckInCreate(BaseModel):
@@ -10,6 +10,14 @@ class CheckInCreate(BaseModel):
     status: Literal["done", "missed"]
     mood_score: int | None = Field(default=None, ge=1, le=10)
     note: str | None = None
+
+    @model_validator(mode="after")
+    def _mood_only_for_done(self) -> "CheckInCreate":
+        # İş kuralı veri şeklinde yaşar: router'lar dışındaki her yazma yolu
+        # (servisler, importlar) da aynı kuraldan geçer.
+        if self.status != "done" and self.mood_score is not None:
+            raise ValueError("Mood score is only saved for done habits")
+        return self
 
 
 class CheckInRead(BaseModel):

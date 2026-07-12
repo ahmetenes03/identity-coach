@@ -1,0 +1,72 @@
+[
+  {
+    "title": "İki Dakika Kuralı",
+    "source": "James Clear - Atomic Habits",
+    "trigger_category": "overwhelm",
+    "content": "Bir alışkanlığı yapmaya başlamak zorlaştığında onu iki dakikada bitebilecek kadar küçült. Amaç mükemmel yapmak değil, kimliğini pekiştiren eylemi tekrar başlatmaktır.",
+    "example_advice": "Spor yerine 'spor kıyafetimi giyerim' de. Kitap yerine 'bir sayfa okurum' de."
+  },
+  {
+    "title": "Alışkanlık İstifleme",
+    "source": "BJ Fogg - Tiny Habits",
+    "trigger_category": "forgetting",
+    "content": "Yeni alışkanlığı zaten her gün yaptığın mevcut bir alışkanlığın hemen ardına iliştir. Hatırlamayı iradeye değil, var olan rutine bağlarsın.",
+    "example_advice": "'Sabah kahvemi koyduktan sonra üç dakika esneme yapacağım' gibi net bir tetikleyici belirle."
+  },
+  {
+    "title": "Uygulama Niyeti",
+    "source": "Peter Gollwitzer - Implementation Intentions",
+    "trigger_category": "motivation",
+    "content": "'Şu zamanda, şu yerde, şunu yapacağım' formülüyle önceden karar ver. Karar anını ortadan kaldırmak, motivasyon düşükken bile eylemi otomatikleştirir.",
+    "example_advice": "'Yarın 18:00'de salonda 20 dakika yürüyüş yapacağım' cümlesini bugünden yaz."
+  },
+  {
+    "title": "Ortam Tasarımı",
+    "source": "James Clear - Atomic Habits",
+    "trigger_category": "environment",
+    "content": "Doğru davranışı görünür ve kolay, yanlış davranışı görünmez ve zor hale getir. İrade yerine ortamın seni yönlendirmesine izin ver.",
+    "example_advice": "Su içmek istiyorsan matarayı masana koy; telefonla oyalanıyorsan onu başka odada şarj et."
+  },
+  {
+    "title": "Öz-Şefkat Molası",
+    "source": "Kristin Neff - Self-Compassion",
+    "trigger_category": "overwhelm",
+    "content": "Bir günü kaçırmak başarısızlık değil, insan olmanın bir parçasıdır. Kendini suçlamak yerine bir arkadaşına göstereceğin anlayışı kendine göster; bu, pes etme olasılığını azaltır.",
+    "example_advice": "'Bugün zorlandım ve bu normal' de, sonra en küçük adımı planla."
+  },
+  {
+    "title": "Asla İki Kez Kaçırma",
+    "source": "James Clear - Atomic Habits",
+    "trigger_category": "motivation",
+    "content": "Bir kez kaçırmak tesadüf, iki kez kaçırmak yeni bir alışkanlığın başlangıcıdır. Bir aksamadan sonra hemen küçük bir versiyonla geri dön.",
+    "example_advice": "Dün olmadıysa bugün beş dakikalık mini versiyonu yaparak seriyi tekrar başlat."
+  },
+  {
+    "title": "Enerjiye Göre Ölçekleme",
+    "source": "Davranışsal aktivasyon ilkeleri",
+    "trigger_category": "energy",
+    "content": "Enerjin düşükken hedefi sıfıra indirme, küçült. Yorgunken yapılan minik bir adım bile kimlik inşasını sürdürür ve momentumu korur.",
+    "example_advice": "Çok yorgunsan tam antrenman yerine üç dakikalık hafif esneme yap."
+  },
+  {
+    "title": "Dikkat Dağıtıcıyı Sürtünmeyle Azalt",
+    "source": "Nir Eyal - Indistractable",
+    "trigger_category": "distraction",
+    "content": "Dikkat dağıtıcı davranışa ulaşmayı zorlaştıran küçük engeller ekle. Sürtünmeyi artırmak, iradeye güvenmekten daha güvenilirdir.",
+    "example_advice": "Odaklanma sırasında telefonu uçak moduna al veya dikkat dağıtan uygulamaları çıkışa zorla."
+  },
+  {
+    "title": "Zaman Bloklama",
+    "source": "Cal Newport - Deep Work",
+    "trigger_category": "time",
+    "content": "Alışkanlık için takvimde belirli bir zaman dilimi ayır. 'Boş vakit bulunca' yaklaşımı yerine randevu gibi sabitlenen zaman, alışkanlığın kaybolmasını önler.",
+    "example_advice": "Alışkanlığı takvimine 15 dakikalık sabit bir blok olarak ekle ve bildirim kur."
+  },
+  {
+    "title": "Kimlik Temelli Çerçeveleme",
+    "source": "James Clear - Atomic Habits",
+    "trigger_category": "motivation",
+    "content": "Hedefe değil, olmak istediğin kişiye odaklan. Her eylemi 'ben böyle biriyim' cümlesine bir oy olarak gör; kimlik değişince davranış kalıcı olur.",
+    "example_advice": "'Koşmalıyım' yerine 'Ben tutarlı biriyim ve tutarlı insanlar bugün küçük de olsa hareket eder' de."
+  }
+]

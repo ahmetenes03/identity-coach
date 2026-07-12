@@ -1,0 +1,62 @@
+/* ============================================================
+   Identity Coach — Design Tokens
+   Tek doğruluk kaynağı: renkler, tipografi, spacing, gölgeler.
+   ============================================================ */
+:root {
+  /* Brand (indigo) */
+  --brand-50: #eef2ff;
+  --brand-100: #e0e7ff;
+  --brand-200: #c7d2fe;
+  --brand-300: #a5b4fc;
+  --brand-400: #818cf8;
+  --brand-500: #6366f1;
+  --brand-600: #4f46e5;
+  --brand-700: #4338ca;
+  --brand-800: #3730a3;
+  --brand-900: #312e81;
+
+  /* Ink (text) */
+  --ink-900: #111827;
+  --ink-700: #374151;
+  --ink-600: #4b5563;
+  --ink-500: #6b7280;
+  --ink-400: #9ca3af;
+
+  /* Surfaces */
+  --surface: #ffffff;
+  --surface-soft: #f9fafb;
+  --surface-tint: #f5f7ff;
+  --page-bg: linear-gradient(160deg, #eef2ff 0%, #f8faff 45%, #f0fdfa 100%);
+  --border: #e5e7eb;
+  --border-strong: #d1d5db;
+
+  /* Status */
+  --success-bg: #dcfce7;
+  --success-fg: #16a34a;
+  --success-deep: #166534;
+  --danger-bg: #fee2e2;
+  --danger-fg: #dc2626;
+  --warning-bg: #fef3c7;
+  --warning-fg: #b45309;
+
+  /* Chart (validator-approved: indigo ↔ amber, CVD-safe pair) */
+  --chart-done: #4f46e5;
+  --chart-missed: #d97706;
+
+  /* Typography */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+
+  /* Radius */
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  /* Elevation */
+  --shadow-card: 0 1px 2px rgba(17, 24, 39, 0.04), 0 8px 24px rgba(79, 70, 229, 0.08);
+  --shadow-float: 0 12px 40px rgba(49, 46, 129, 0.14);
+
+  /* Motion */
+  --transition: 0.18s ease;
+}

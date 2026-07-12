@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import Input from "../components/Input";
 import AuthLayout from "../layouts/AuthLayout";
 import { loginUser } from "../services/authService";
+import { getApiErrorMessage } from "../services/api";
 import "../styles/auth.css";
 
 function Login() {
@@ -58,7 +59,7 @@ function Login() {
       navigate("/dashboard");
     } catch (error) {
       setApiError(
-        error.response?.data?.detail || "Giriş işlemi sırasında bir hata oluştu."
+        getApiErrorMessage(error, "Giriş işlemi sırasında bir hata oluştu.")
       );
     }
   };
