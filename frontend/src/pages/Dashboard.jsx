@@ -45,7 +45,7 @@ function Dashboard() {
 
   const handleLogout = () => {
     logoutUser();
-    navigate("/login");
+    navigate("/", { replace: true });
   };
 
   const getLatestCheckIn = (habitId) => {
