@@ -267,3 +267,70 @@ def test_stats_overview_and_excuses(client, auth_headers):
     assert weekly[-1]["missed"] == 1
     by_date = {d["date"]: d for d in weekly}
     assert by_date["2026-07-10"]["done"] == 1
+
+
+def test_agent_tools_streak_and_patterns():
+    from datetime import date
+    from uuid import uuid4
+    from app.database import SessionLocal
+    from app.agents.tools import get_current_streak, get_user_failure_patterns
+    from app.models import User, Habit, CheckIn, FailureReflection
+
+    db = SessionLocal()
+    try:
+        # Create user
+        user = User(
+            name="Streak Tester",
+            email=f"streak.{uuid4().hex}@example.com",
+            password_hash="fake-hash"
+        )
+        db.add(user)
+        db.flush()
+        
+        # Create habit
+        habit = Habit(
+            user_id=user.id,
+            title="Spora git",
+            frequency="daily",
+            is_active=True
+        )
+        db.add(habit)
+        db.flush()
+        
+        # Create check-ins for streak: 3 days of done, then 1 missed today
+        # Days: 2026-07-10 (done), 2026-07-11 (done), 2026-07-12 (done), 2026-07-13 (missed)
+        check_ins = [
+            CheckIn(user_id=user.id, habit_id=habit.id, check_date=date(2026, 7, 10), status="done"),
+            CheckIn(user_id=user.id, habit_id=habit.id, check_date=date(2026, 7, 11), status="done"),
+            CheckIn(user_id=user.id, habit_id=habit.id, check_date=date(2026, 7, 12), status="done"),
+            CheckIn(user_id=user.id, habit_id=habit.id, check_date=date(2026, 7, 13), status="missed"),
+        ]
+        for c in check_ins:
+            db.add(c)
+        db.flush()
+        
+        # Assert streak is 3 (skips today's miss and counts consecutive done days)
+        streak = get_current_streak(db, user.id, habit.id)
+        assert streak == 3
+        
+        # Create failure reflections to check patterns
+        reflections = [
+            FailureReflection(user_id=user.id, habit_id=habit.id, reason_text="Zamanım yoktu", category="time"),
+            FailureReflection(user_id=user.id, habit_id=habit.id, reason_text="Çok yoğundum", category="time"),
+            FailureReflection(user_id=user.id, habit_id=habit.id, reason_text="Unutmuşum", category="forgetting"),
+        ]
+        for r in reflections:
+            db.add(r)
+        db.flush()
+        
+        # Get failure patterns
+        patterns = get_user_failure_patterns(db, user.id, habit.id)
+        assert patterns["top_category"] == "time"
+        assert patterns["category_counts"]["time"] == 2
+        assert patterns["category_counts"]["forgetting"] == 1
+        assert patterns["total_reflections"] == 3
+        assert patterns["completion_rate"] == 0.75 # 3 done out of 4 check-ins
+    finally:
+        db.rollback()
+        db.close()
+
