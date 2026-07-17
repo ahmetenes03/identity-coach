@@ -25,10 +25,14 @@ APP_TABLES = (
 
 
 def upgrade() -> None:
-    for table_name in APP_TABLES:
-        op.execute(f"ALTER TABLE public.{table_name} ENABLE ROW LEVEL SECURITY")
+    bind = op.get_bind()
+    if bind.dialect.name == "postgresql":
+        for table_name in APP_TABLES:
+            op.execute(f"ALTER TABLE public.{table_name} ENABLE ROW LEVEL SECURITY")
 
 
 def downgrade() -> None:
-    for table_name in APP_TABLES:
-        op.execute(f"ALTER TABLE public.{table_name} DISABLE ROW LEVEL SECURITY")
+    bind = op.get_bind()
+    if bind.dialect.name == "postgresql":
+        for table_name in APP_TABLES:
+            op.execute(f"ALTER TABLE public.{table_name} DISABLE ROW LEVEL SECURITY")
