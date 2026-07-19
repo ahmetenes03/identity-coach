@@ -114,7 +114,9 @@ def test_check_in_mood_score_validation():
         )
         assert response.status_code == 422
 
-        # Test Case 3: mood_score provided when status is "missed" - Should return 400 Bad Request
+        # Test Case 3: mood_score provided when status is "missed" - rejected.
+        # Kural router yerine CheckInCreate şema validator'ına taşındı, bu yüzden
+        # artık 422 (Unprocessable Entity) döner.
         response = client.post(
             "/api/check-ins",
             headers=headers,
@@ -125,8 +127,7 @@ def test_check_in_mood_score_validation():
                 "mood_score": 5,
             },
         )
-        assert response.status_code == 400
-        assert "Mood score is only saved for done habits" in response.json()["detail"]
+        assert response.status_code == 422
 
         # Test Case 4: Valid check-in with mood_score 10
         response = client.post(
