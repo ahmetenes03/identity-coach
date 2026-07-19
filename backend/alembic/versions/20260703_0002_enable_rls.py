@@ -25,10 +25,16 @@ APP_TABLES = (
 
 
 def upgrade() -> None:
+    # RLS is a Postgres feature; skip on SQLite so local dev / tests can run the
+    # full migration chain. Postgres behaviour is unchanged.
+    if op.get_bind().dialect.name != "postgresql":
+        return
     for table_name in APP_TABLES:
         op.execute(f"ALTER TABLE public.{table_name} ENABLE ROW LEVEL SECURITY")
 
 
 def downgrade() -> None:
+    if op.get_bind().dialect.name != "postgresql":
+        return
     for table_name in APP_TABLES:
         op.execute(f"ALTER TABLE public.{table_name} DISABLE ROW LEVEL SECURITY")

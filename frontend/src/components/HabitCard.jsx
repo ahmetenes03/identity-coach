@@ -31,9 +31,15 @@ function HabitCard({ habit, latestCheckIn, onDelete }) {
         </div>
 
         {latestCheckIn && (
-          <div className="checkin-result">
-            <strong>Son Check-in:</strong>{" "}
-            {latestCheckIn.status === "done" ? "✅ Yaptım" : "❌ Yapmadım"}
+          <div
+            className={
+              latestCheckIn.status === "done"
+                ? "checkin-result"
+                : "checkin-result missed"
+            }
+          >
+            <strong>Son Check-in ({latestCheckIn.check_date}):</strong>{" "}
+            {latestCheckIn.status === "done" ? "✅ Yaptım" : "➖ Yapmadım"}
             {latestCheckIn.mood_score && (
               <p>Ruh hali puanı: {latestCheckIn.mood_score}/10</p>
             )}

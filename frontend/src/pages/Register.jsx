@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import Input from "../components/Input";
 import AuthLayout from "../layouts/AuthLayout";
 import { registerUser } from "../services/authService";
+import { getApiErrorMessage } from "../services/api";
 import "../styles/auth.css";
 
 function Register() {
@@ -65,7 +66,7 @@ function Register() {
       navigate("/dashboard");
     } catch (error) {
       setApiError(
-        error.response?.data?.detail || "Kayıt işlemi sırasında bir hata oluştu."
+        getApiErrorMessage(error, "Kayıt işlemi sırasında bir hata oluştu.")
       );
     }
   };

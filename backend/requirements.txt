@@ -11,3 +11,10 @@ python-jose[cryptography]==3.3.0
 python-dotenv==1.0.1
 pytest==8.3.4
 httpx==0.28.1
+
+# --- Optional AI providers -------------------------------------------------
+# The default "offline" provider needs none of these. Install only the SDK for
+# the provider you configure via LLM_PROVIDER. Ollama uses httpx (already above).
+# google-genai>=1.0.0        # LLM_PROVIDER=gemini
+# openai>=1.0.0              # LLM_PROVIDER=openai
+# anthropic>=0.40.0          # LLM_PROVIDER=claude

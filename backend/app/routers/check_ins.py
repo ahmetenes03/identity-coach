@@ -34,9 +34,7 @@ def create_check_in(
     if existing_check_in:
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Habit already checked in for this date")
 
-    if payload.status == "missed" and payload.mood_score is not None:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Mood score is only saved for done habits")
-
+    # "mood_score yalnızca done için" kuralı CheckInCreate şemasında doğrulanır.
     check_in = models.CheckIn(user_id=current_user.id, **payload.model_dump())
     db.add(check_in)
     db.commit()
