@@ -51,7 +51,11 @@ async def process_reflection(
     )
     strategies = [item["strategy"] for item in retrieved["strategies"]]
 
-    # 2. Persist the reflection with its embedding.
+    # 2. Persist the reflection with its embedding and COMMIT before the LLM
+    #    call. Holding a write transaction open across the multi-second LLM
+    #    round-trip would keep the DB write lock the whole time (on SQLite that
+    #    causes "database is locked" under any concurrency; on Postgres it just
+    #    wastes a connection).
     reflection = FailureReflection(
         user_id=user.id,
         habit_id=habit.id,
@@ -61,7 +65,8 @@ async def process_reflection(
         embedding=retrieved["embedding"],
     )
     db.add(reflection)
-    db.flush()  # assign reflection.id without committing yet
+    db.commit()
+    db.refresh(reflection)
 
     # 3. Tool context.
     streak = get_current_streak(db, user.id, habit.id)
