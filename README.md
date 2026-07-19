@@ -131,7 +131,7 @@ Sprint 1 kapsamında geliştirilen kullanıcı hikâyeleri ve teknik görevler s
 
 Sprint boyunca ekip içi iletişim düzenli Daily Scrum toplantıları ile sürdürülmüş, görevlerin ilerleme durumu değerlendirilmiş ve karşılaşılan engeller ekip içerisinde çözülmüştür.
 
-[🔗 **Daily Scrum Görselleri**](https://github.com/ahmetenes03/identity-coach/tree/aybuke/docs/sprint1/daily-scrum)
+[🔗 **Daily Scrum Görselleri**](docs/sprint1/daily-scrum)
 
 ---
 
@@ -250,7 +250,7 @@ Sprint 2 kapsamında geliştirilen kullanıcı hikâyeleri ve teknik görevler s
 
 Sprint boyunca ekip içi iletişim düzenli Daily Scrum toplantıları ile sürdürülmüş, yapay zekâ geliştirme sürecindeki ilerlemeler değerlendirilmiş ve karşılaşılan teknik problemler ekip içerisinde çözüme kavuşturulmuştur.
 
-[🔗 **Daily Scrum Görselleri**](https://github.com/ahmetenes03/identity-coach/tree/aybuke/docs/sprint2/daily-scrum)
+[🔗 **Daily Scrum Görselleri**](docs/sprint2/daily-scrum)
 
 ---
 
